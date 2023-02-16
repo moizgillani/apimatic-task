@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import os.path
+from config import NOTION_API_KEY, NOTION_DATABASE_ID, SCOPES
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -11,12 +12,10 @@ from googleapiclient.errors import HttpError
 from notion_client import Client
 import time
 
-SCOPES = ['https://www.googleapis.com/auth/tasks.readonly']
-
 creds = None
 # Connect to the Notion API to obtain a valid Notion token and database ID
-notion = Client(auth='secret_dE9hl248cv9GNl4EcmJ6bDSM7ZJCqf2zI8bH9PmwgTH')
-database_id = 'ad9df9682f7a441d98669ea9dc860e91'
+notion = Client(auth=NOTION_API_KEY)
+database_id = NOTION_DATABASE_ID
 
 while True:
     if os.path.exists('token.json'):
